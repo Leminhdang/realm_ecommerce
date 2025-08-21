@@ -5,8 +5,8 @@ export const UserSchema = {
     id: "string",
     name: "string",
     email: "string",
-    role: "bool",
-    phone: "number",
+    role: "string",
+    phone: "string",
     password: "string",
   },
 };

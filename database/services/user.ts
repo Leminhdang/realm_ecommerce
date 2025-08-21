@@ -1,20 +1,20 @@
 import { Login } from "@/types";
 import { getRealm } from "../realm";
 
-export const login = async ({ email, phone, password }: Login) => {
+export const login = async ({ email, password }: Login) => {
   const realm = await getRealm();
 
   let user = null;
-
   if (email) {
     user = realm
       .objects("User")
       .filtered("email == $0 AND password == $1", email, password)[0];
-  } else if (phone) {
-    user = realm
-      .objects("User")
-      .filtered("phone == $0 AND password == $1", phone, password)[0];
   }
+  // else if (phone) {
+  //   user = realm
+  //     .objects("User")
+  //     .filtered("phone == $0 AND password == $1", phone, password)[0];
+  // }
 
   if (user) {
     return {
@@ -26,4 +26,9 @@ export const login = async ({ email, phone, password }: Login) => {
     };
   }
   return null;
+};
+
+export const getAllUsers = async () => {
+  const realm = await getRealm();
+  return realm.objects("User");
 };

@@ -7,11 +7,12 @@ export default function Index() {
   useEffect(() => {
     const checkLogin = async () => {
       const token = null;
-      if (token) {
-        router.replace("/(tabs)");
-      } else {
-        router.replace("/login");
-      }
+      router.replace("/(tabs)");
+      // if (token) {
+      //   router.replace("/(tabs)");
+      // } else {
+      //   router.replace("/login");
+      // }
     };
     checkLogin();
   }, []);
