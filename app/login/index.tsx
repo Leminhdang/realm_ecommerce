@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import { login } from "@/database/services/user";
+import { router } from "expo-router";
 import { useState } from "react";
 import { Text, TextInput, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -9,11 +10,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    console.log("kkk");
-
-    const user = await login({ email, password });
-
-    console.log(user);
+    try {
+      const user = await login({ email, password });
+      router.replace("/(tabs)");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white", padding: 16 }}>
